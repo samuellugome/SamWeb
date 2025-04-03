@@ -78,6 +78,80 @@ function Portfolio() {
     </motion.div>
   );
 
+  const renderAbout = () => (
+    <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
+      <Card className="max-w-3xl mx-auto p-6 mt-10 shadow-md bg-[#fefae0]">
+        <CardContent>
+          <h2 className="text-3xl font-semibold mb-4 text-blue-700">About Me</h2>
+          <p className="text-base text-gray-800 mb-3">
+            I am a passionate and detail-driven electrical engineer with a strong foundation in power systems, automation, and systems engineering.
+            With a Bachelor of Science in Electrical Engineering and a Master of Science in Engineering Management, I’ve built a skill set that combines deep technical expertise with a strategic, systems-level mindset.
+          </p>
+          <p className="text-base text-gray-800 mb-3">
+            My work spans power system studies, embedded automation, safety system design, and simulations.
+            Tools I use include: <strong>MATLAB, Studio 5000, SKM Power Tools, AutoCAD, EasyPower</strong>
+            —and I’m fluent in: <strong>Python, Java, C</strong>.
+          </p>
+          <p className="text-base text-gray-800 mb-3">
+            I specialize in helping small businesses—especially restaurants—get tech-savvy fast.
+            I’ve set up POS systems like Toast, Square, and Clover, integrated Apple Pay, configured secure Wi-Fi, managed cloud tools like Google Workspace, and handled OS installs.
+          </p>
+          <p className="text-base text-gray-800 mb-3">
+            I’m fluent in both <strong>English</strong> and <strong>Spanish</strong>, which helps me serve a broad range of clients and collaborate effectively across teams.
+          </p>
+          <p className="text-base text-blue-700 font-medium mt-4 text-center">
+            👉 <a href="https://www.linkedin.com/in/samuel-lugo-9231801b8/?trk=opento_sprofile_topcard" target="_blank" rel="noreferrer">Visit My LinkedIn Profile</a>
+          </p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+
+  const renderServices = () => (
+    <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
+      <Card id="services" className="max-w-5xl mx-auto p-8 mt-10 shadow-lg bg-[#fefae0]">
+        <CardContent>
+          <h2 className="text-3xl font-bold mb-6 text-blue-800">Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+            {Object.entries(serviceDescriptions).map(([label, desc], index) => {
+              const Icon = serviceIcons[label] || Sparkles;
+              return (
+                <div key={index} className="relative group">
+                  <div className="flex items-center">
+                    <Icon className="inline mr-2 text-blue-600" />
+                    <span>{label}</span>
+                  </div>
+                  <div className="absolute z-10 hidden group-hover:block bg-white border border-blue-100 p-3 text-sm shadow-md rounded-md w-72 mt-2">
+                    {desc}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-sm text-center mt-8 text-gray-700">
+            Need a specific service? Additional offerings are available upon request.  
+            <br />
+            📧 Email me at <strong>SamuelLugoME@gmail.com</strong> or text/call 📞 <strong>(774) 232-6925</strong>
+          </p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+
+  const renderContact = () => (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }}>
+      <Card className="max-w-2xl mx-auto p-6 mt-10 shadow-md bg-[#fefae0]">
+        <CardContent>
+          <h2 className="text-3xl font-semibold mb-4 text-blue-700">Contact Me</h2>
+          <p className="mb-4 text-gray-800">
+            📞 (774) 232-6925<br />
+            ✉️ SamuelLugoME@gmail.com
+          </p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+
   return (
     <div className="min-h-screen bg-[#dbeafe] text-gray-900 p-4">
       <nav className="flex justify-center space-x-6 py-4 border-b border-blue-300 mb-6 shadow-sm bg-[#bfdbfe] rounded-xl">
@@ -87,6 +161,9 @@ function Portfolio() {
         {navButton("Contact", "contact")}
       </nav>
       {page === "home" && renderHome()}
+      {page === "about" && renderAbout()}
+      {page === "services" && renderServices()}
+      {page === "contact" && renderContact()}
     </div>
   );
 }
